@@ -19,7 +19,7 @@ composer install
 ```
 
 ### Usage
-
+#### Downloading domain DNS details
 To download the DNS details in Excel sheet, pass array of domains in dnsdump.php on line number 12.
 
 Example 
@@ -31,6 +31,43 @@ Go to php-script-dnsdumpster direcotry from terminal.
 Now run dnsdump.php script.
 
 Example ```php dnsdump.php```
+
+Output:
+```
+Copying google.com into dnsfiles directory.
+File-> 1: Copied google.com into dnsfiles directory.
+
+Copying facebook.com into dnsfiles directory.
+File-> 2: Copied facebook.com into dnsfiles directory.
+
+Copying linkedin.com into dnsfiles directory.
+File-> 3: Copied linkedin.com into dnsfiles directory.
+
+Copying vivacanada.com into dnsfiles directory.
+File-> 4: Copied vivacanada.com into dnsfiles directory.
+
+Data not found for following domains:
+vivacanada.com
+```
+
+#### Merge downloaded domain details in one Excel
+To merge the all files data into one file follow below steps.
+From terminal run 
+```
+php merge.php
+```
+
+Outupt:
+
+```
+Merging all files in merged_files.xlsx.
+
+File -> 1: Merged facebook.com.xlsx.xlsx file in merged_files.xlsx.
+File -> 2: Merged google.com.xlsx.xlsx file in merged_files.xlsx.
+File -> 3: Merged linkedin.com.xlsx.xlsx file in merged_files.xlsx.
+
+Merged all files in merged_files.xlsx.
+```
 
 ### Limitations
 dnsdumspter allow to download 160 domain DNS files from single IP address for 24 hours.
