@@ -30,7 +30,7 @@ Go to php-script-dnsdumpster direcotry from terminal.
 
 Now run dnsdump.php script.
 
-Example ```php nsdump.php```
+Example ```php dnsdump.php```
 
 ### Limitations
 dnsdumspter allow to download 160 domain DNS files from single IP address for 24 hours.
