@@ -6,8 +6,6 @@ DNSDumpster is a domain research tool to find host related information. It’s H
 
 Not just subdomain but it gives you information about DNS server, MX record, TXT record and nice mapping of your domain.
 
-Website: https://dnsdumpster.com/
-
 
 # Contributing
 Feel free to open issues, contribute and submit your Pull Requests. You can also ping me on Twitter (@sonvir249)
