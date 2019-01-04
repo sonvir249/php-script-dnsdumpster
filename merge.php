@@ -1,11 +1,17 @@
 <?php
+
+/**
+ * @file
+ * File to merge all the downloaded files into one file.
+ */
+
 require 'vendor/autoload.php';
 
 use Box\Spout\Reader\ReaderFactory;
 use Box\Spout\Writer\WriterFactory;
 use Box\Spout\Common\Type;
 
-// ... and a writer to create the new file
+// ... and a writer to create the new file.
 $writer = WriterFactory::create(Type::XLSX);
 $writer->openToFile('merged_files.xlsx');
 $header_processed = FALSE;
@@ -13,22 +19,22 @@ $header_processed = FALSE;
 // Get all files.
 $inputFileNames = array_slice(scandir('dnsfiles'), 2);
 
-/**  Loop through all the remaining files in the list  **/
+// Loop through all the remaining files in the list.
 print "Merging all files in merged_files.xlsx.\n\n";
 
 $sheet_count = 1;
 
-foreach($inputFileNames as $sheet => $inputFileName) {
+foreach ($inputFileNames as $sheet => $inputFileName) {
   $file_ext = pathinfo($inputFileName, PATHINFO_EXTENSION);
   if ($file_ext === 'xlsx') {
-    // we need a reader to read the existing file...
+    // We need a reader to read the existing file...
     $reader = ReaderFactory::create(Type::XLSX);
-    $reader->open('dnsfiles/'.$inputFileName);
-    $reader->setShouldFormatDates(true);
+    $reader->open('dnsfiles/' . $inputFileName);
+    $reader->setShouldFormatDates(TRUE);
 
     // let's read the entire spreadsheet...
     foreach ($reader->getSheetIterator() as $sheetIndex => $sheet) {
-      // Add sheets in the new file, as we read new sheets in the existing one
+      // Add sheets in the new file, as we read new sheets in the existing one.
       if ($sheetIndex !== 1) {
         $writer->addNewSheetAndMakeItCurrent();
       }
@@ -47,7 +53,7 @@ foreach($inputFileNames as $sheet => $inputFileName) {
           array_unshift($row, '');
         }
 
-        // ... and copy each row into the new spreadsheet
+        // ... and copy each row into the new spreadsheet.
         $writer->addRow($row);
         $counter++;
       }
@@ -57,6 +63,5 @@ foreach($inputFileNames as $sheet => $inputFileName) {
     $sheet_count++;
   }
 }
-
 $writer->close();
 print "\nMerged all files in merged_files.xlsx.\n";

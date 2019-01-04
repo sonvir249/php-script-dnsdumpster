@@ -1,6 +1,11 @@
 <?php
 
-// Turn off all error reporting
+/**
+ * @file
+ * File to download excel sheet from dnsdumpster.com.
+ */
+
+// Turn off all error reporting.
 error_reporting(0);
 
 // $domains is an array of domains.
@@ -17,7 +22,7 @@ foreach ($domains as $key => $domain) {
 
     curl_setopt($ch, CURLOPT_URL, "https://dnsdumpster.com/");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "csrfmiddlewaretoken=kbaoos7fElQ5I4aXaGFugUnO6mh6QmZe&targetip=".$domain);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "csrfmiddlewaretoken=kbaoos7fElQ5I4aXaGFugUnO6mh6QmZe&targetip=" . $domain);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
 
@@ -38,17 +43,18 @@ foreach ($domains as $key => $domain) {
 
     $result = curl_exec($ch);
     if (curl_errno($ch)) {
-      echo 'Error:' . curl_error($ch)."\n";
+      echo 'Error:' . curl_error($ch) . "\n";
     }
     else {
       print "Copying {$domain} into dnsfiles directory.\n";
-      // var_dump($result);
-      $dom = new DOMDocument;
+      $dom = new DOMDocument();
       $dom->loadHTML($result);
       $nodes = $dom->getElementsByTagName('a');
-      /** @var \DOMNode $node */
+
+      // Loop through all the links available in curl response.
       foreach ($nodes as $node) {
         if (strpos($node->attributes->getNamedItem('href')->nodeValue, 'https://dnsdumpster.com/static/xls/') !== FALSE) {
+          // Get Excel file.
           $con = file_get_contents($node->attributes->getNamedItem('href')->nodeValue);
           $fp = fopen($file_path, 'w+');
           fwrite($fp, $con);
@@ -57,12 +63,12 @@ foreach ($domains as $key => $domain) {
         }
       }
       curl_close($ch);
-      print "File-> ".($key + 1).": Copied {$domain} into dnsfiles directory.\n\n";
+      print "File-> " . ($key + 1) . ": Copied {$domain} into dnsfiles directory.\n\n";
     }
   }
 }
 if (!empty($copied_domains)) {
   $not_copied = array_diff($domains, $copied_domains);
   print "Data not found for following domains: \n";
-  print implode("\n", $not_copied)."\n";
+  print implode("\n", $not_copied) . "\n";
 }
