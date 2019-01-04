@@ -1,6 +1,6 @@
 # PHP script for dnsdumpster.com
 
-Unofficial PHP script to download DNS details from https://dnsdumpster.com/
+Unofficial PHP CLI script to download DNS details from https://dnsdumpster.com/
 
 DNSDumpster is a domain research tool to find host related information. It’s HackerTarget.com project.
 
@@ -18,6 +18,22 @@ git clone git@github.com:sonvir249/php-script-dnsdumpster.git
 composer install
 ```
 
+### Usage
+
+To download the DNS details in Excel sheet, pass array of domains in dnsdump.php on line number 12.
+
+Example 
+```
+$domains = ['google.com', 'facebook.com', 'linkedin.com', 'vivacanada.com'];
+```
+Go to php-script-dnsdumpster direcotry from terminal.
+
+Now run dnsdump.php script.
+
+Example ```php nsdump.php```
+
+### Limitations
+dnsdumspter allow to download 160 domain DNS files from single IP address for 24 hours.
 
 
 # Contributing
