@@ -1,4 +1,4 @@
-# dnssumpster
+# PHP script for dnsdumpster.com
 
 Unofficial PHP script to download DNS details from https://dnsdumpster.com/
 
@@ -8,3 +8,6 @@ Not just subdomain but it gives you information about DNS server, MX record, TXT
 
 Website: https://dnsdumpster.com/
 
+
+# Contributing
+Feel free to open issues, contribute and submit your Pull Requests. You can also ping me on Twitter (@sonvir249)
