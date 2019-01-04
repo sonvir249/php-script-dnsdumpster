@@ -1,6 +1,6 @@
-# PHP script for dnsdumpster.com
+# Unofficial PHP script for dnsdumpster.com
 
-Unofficial PHP CLI script to download DNS details from https://dnsdumpster.com/
+Simple PHP CLI script to download DNS details from https://dnsdumpster.com/
 
 DNSDumpster is a domain research tool to find host related information. It’s HackerTarget.com project.
 
