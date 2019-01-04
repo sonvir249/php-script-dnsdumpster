@@ -9,3 +9,14 @@ Not just subdomain but it gives you information about DNS server, MX record, TXT
 
 # Contributing
 Feel free to open issues, contribute and submit your Pull Requests. You can also ping me on Twitter (@sonvir249)
+
+### Install from the sources
+Clone the repo
+```
+git clone git@github.com:sonvir249/php-script-dnsdumpster.git
+```
+
+### Install requirements
+```
+composer install
+```
